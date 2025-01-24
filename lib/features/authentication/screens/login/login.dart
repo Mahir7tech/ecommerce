@@ -1,4 +1,5 @@
 import 'package:ecommerce/common/styles/spacing_style.dart';
+import 'package:ecommerce/utils/constants/colors.dart';
 import 'package:ecommerce/utils/constants/image_strings.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:ecommerce/utils/constants/text_strings.dart';
@@ -12,6 +13,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
+
     return  Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -32,35 +34,69 @@ class LoginScreen extends StatelessWidget {
               ],
               ),
               /// Form
-              Form(child: Column(
-                children: [
-                  /// Email
-                  TextFormField(
-                    decoration: const InputDecoration(
-                        prefixIcon: Icon(Iconsax.direct_right),
-                        labelText: TTexts.email),
-                  ),
-                  const SizedBox(height: TSizes.spaceBtwInputFields),
-
-                  /// Password
-                  TextFormField(
-                    decoration: const InputDecoration(
-                        prefixIcon: Icon(Iconsax.password_check),
-                        labelText: TTexts.password,
-                        suffixIcon: Icon(Iconsax.eye_slash),
+              Form(child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwSection),
+                child: Column(
+                  children: [
+                    /// Email
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          prefixIcon: Icon(Iconsax.direct_right),
+                          labelText: TTexts.email),
                     ),
-                  ),
-                  const SizedBox(height: TSizes.spaceBtwInputFields /2),
+                    const SizedBox(height: TSizes.spaceBtwInputFields),
 
-                  ///Reminder Me & Forgot Password
-                  Row(
-                    children: [
-                      Checkbox(value: true, onChanged:(value){}),
-                      const Text(TTexts.rememberMe),
-                    ],
-                  )
+                    /// Password
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          prefixIcon: Icon(Iconsax.password_check),
+                          labelText: TTexts.password,
+                          suffixIcon: Icon(Iconsax.eye_slash),
+                      ),
+                    ),
+                    const SizedBox(height: TSizes.spaceBtwInputFields /2),
+
+                    ///Reminder Me & Forgot Password
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        /// Remember me
+                        Row(
+                          children: [
+                            Checkbox(value: true, onChanged: (value){}),
+                            const Text(TTexts.rememberMe),
+                          ],
+                        ),
+                        /// Forgot Password
+                        TextButton(onPressed: (){}, child: const Text(TTexts.forgetPassword)),
+                      ],
+                    ),
+                    const SizedBox(height: TSizes.spaceBtwInputFields),
+
+                    /// Sign in Button
+                    SizedBox(width: double.infinity, child: ElevatedButton(onPressed: (){}, child: Text(TTexts.signIn))),
+                    const SizedBox(height: TSizes.spaceBtwItems),
+
+                    /// Create Account Button
+                    SizedBox(width: double.infinity, child: OutlinedButton(onPressed: (){}, child: Text(TTexts.createAccount))),
+                    const SizedBox(height: TSizes.spaceBtwSection),
+
+                  ],
+                ),
+              ),
+              ),
+
+              /// Divider
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(child: Divider(color: dark ? TColors.darkGrey: TColors.grey, thickness: 0.5, indent: 60, endIndent: 5)),
+                  Flexible(child: Divider(color: dark ? TColors.darkGrey: TColors.grey, thickness: 0.5, indent: 5, endIndent: 60)),
+
                 ],
-              )),
+              )
+
+              /// Footer
             ],
           ),
         ),
